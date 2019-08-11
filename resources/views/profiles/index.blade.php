@@ -13,8 +13,14 @@
     <div class="col-md-9">
       <div>
         <h2 class="d-inline">{{ $user->username }}</h2>
+        @can('update', $user->profile)
         <a href="{{ route('posts.create') }}" class="d-inline float-right mt-2">Add new post</a>
+        @endcan
       </div>
+
+      @can('update', $user->profile)
+      <a href="{{ route('profile.edit', $user->id) }}" class="">Edit Profile</a>
+      @endcan
 
       <div>
         <span class="mr-4"><strong>{{ $user->posts->count() }}</strong> posts</span>
@@ -37,7 +43,9 @@
   <div class="row mt-5">  <!-- posts row -->
     @foreach ($user->posts as $post)
     <div class="col-md-4 mb-3 pb-4">
-      <img src="/storage/{{ $post->image }}" alt="" class="img-fluid">
+      <a href="{{ route('posts.show', $post->id) }}">
+        <img src="/storage/{{ $post->image }}" alt="" class="img-fluid">
+      </a>
     </div>
     @endforeach
   </div>
