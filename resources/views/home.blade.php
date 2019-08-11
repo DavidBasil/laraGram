@@ -20,10 +20,10 @@
       </div>
 
       <div class="py-2">
-        <p class="font-weight-bold m-0">laragram.org</p>
-        <p class="m-0">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</p>
+        <p class="font-weight-bold m-0">{{ $user->profile->title }}</p>
+        <p class="m-0">{{ $user->profile->description }}</p>
         <p class="m-0">
-          <a href="http://www.laragram.org" target="_blank" class="text-primary">www.laragram.org</a>
+        <a href="{{ $user->profile->url }}" target="_blank" class="text-primary">{{ $user->profile->url }}</a>
         </p>
       </div>
 
