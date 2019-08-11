@@ -11,10 +11,13 @@
 
     <!-- right column -->
     <div class="col-md-9">
-      <h2>{{ $user->username }}</h2>
+      <div>
+        <h2 class="d-inline">{{ $user->username }}</h2>
+        <a href="{{ route('posts.create') }}" class="d-inline float-right mt-2">Add new post</a>
+      </div>
 
       <div>
-        <span class="mr-4"><strong>153</strong> posts</span>
+        <span class="mr-4"><strong>{{ $user->posts->count() }}</strong> posts</span>
         <span class="mr-4"><strong>23k</strong> followers</span>
         <span class="mr-4"><strong>212</strong> following</span>
       </div>
@@ -32,15 +35,11 @@
   </div> <!-- end of top row -->
 
   <div class="row mt-5">  <!-- posts row -->
-    <div class="col-md-4">
-      <img src="https://media.4rgos.it/i/Argos/8729493_R_Z001A?w=750&h=440&qlt=70" alt="" class="img-fluid">
+    @foreach ($user->posts as $post)
+    <div class="col-md-4 mb-3 pb-4">
+      <img src="/storage/{{ $post->image }}" alt="" class="img-fluid">
     </div>
-    <div class="col-md-4">
-      <img src="https://www.noobie.com/wp-content/uploads/2017/11/apple-coffee-computer-cup-girl-update-mac-software-FEATURE-pb.jpg" alt="" class="img-fluid">
-    </div>
-    <div class="col-md-4">
-      <img src="https://image.freepik.com/free-photo/business-people-working-laptop-meeting_53876-40326.jpg" alt="" class="img-fluid">
-    </div>
+    @endforeach
   </div>
 
 </div>
