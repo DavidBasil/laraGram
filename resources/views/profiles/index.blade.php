@@ -6,13 +6,19 @@
 
     <!-- left column -->
     <div class="col-md-3 p-4">
-      <img src="https://s3.amazonaws.com/freecodecamp/curriculum-diagram-full.jpg" alt="" class="w-75 rounded-circle">
+      @if ($user->profile->image)
+        <img src="/storage/{{ $user->profile->image }}" alt="" class="w-100 rounded-circle">
+      @else
+        <img src="{{ asset('img/placeholder.png') }}" alt="" class="w-100 rounded-circle">
+      @endif
     </div>
 
     <!-- right column -->
     <div class="col-md-9">
-      <div>
+      <div class="pb-3">
+
         <h2 class="d-inline">{{ $user->username }}</h2>
+        <follow-button></follow-button>
         @can('update', $user->profile)
         <a href="{{ route('posts.create') }}" class="d-inline float-right mt-2">Add new post</a>
         @endcan
