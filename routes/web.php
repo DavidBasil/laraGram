@@ -11,11 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
+
+Route::get('/', 'PostsController@index');
 
 Route::get('profile/{user}', 'ProfilesController@index')->name('profile.show');
 Route::get('profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
@@ -27,6 +26,4 @@ Route::get('posts/{post}', 'PostsController@show')->name('posts.show');
 Route::post('posts', 'PostsController@store')->name('posts.store');
 
 // following
-Route::post('follow/{user}', function(){
-    return ['success'];
-});
+Route::post('follow/{user}', 'FollowsController@store');

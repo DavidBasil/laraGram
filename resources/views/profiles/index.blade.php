@@ -18,7 +18,9 @@
       <div class="pb-3">
 
         <h2 class="d-inline">{{ $user->username }}</h2>
-        <follow-button></follow-button>
+
+        <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
+
         @can('update', $user->profile)
         <a href="{{ route('posts.create') }}" class="d-inline float-right mt-2">Add new post</a>
         @endcan
@@ -30,8 +32,8 @@
 
       <div>
         <span class="mr-4"><strong>{{ $user->posts->count() }}</strong> posts</span>
-        <span class="mr-4"><strong>23k</strong> followers</span>
-        <span class="mr-4"><strong>212</strong> following</span>
+        <span class="mr-4"><strong>{{ $user->profile->followers->count() }}</strong> followers</span>
+        <span class="mr-4"><strong>{{ $user->following->count() }}</strong> following</span>
       </div>
 
       <div class="py-2">

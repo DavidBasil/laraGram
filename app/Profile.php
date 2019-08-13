@@ -9,10 +9,10 @@ class Profile extends Model
 
     protected $guarded = [];
 
-    /* public function profileImage() */
-    /* { */
-    /*     return ($this->image) ? '/storage/'.$this->image : ''; */
-    /* } */
+    public function followers()
+    {
+        return $this->belongsToMany(User::class);
+    }
 
     public function user()
     {
