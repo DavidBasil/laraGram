@@ -31,9 +31,9 @@
       @endcan
 
       <div>
-        <span class="mr-4"><strong>{{ $user->posts->count() }}</strong> posts</span>
-        <span class="mr-4"><strong>{{ $user->profile->followers->count() }}</strong> followers</span>
-        <span class="mr-4"><strong>{{ $user->following->count() }}</strong> following</span>
+        <span class="mr-4"><strong>{{ $postCount }}</strong> posts</span>
+        <span class="mr-4"><strong>{{ $followersCount }}</strong> followers</span>
+        <span class="mr-4"><strong>{{ $followingCount }}</strong> following</span>
       </div>
 
       <div class="py-2">
