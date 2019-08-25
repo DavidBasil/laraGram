@@ -19,15 +19,15 @@
 
         <h2 class="d-inline">{{ $user->username }}</h2>
 
-        <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
+        @if (auth()->user()->id != $user->profile->user_id)
+          <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
+        @endif
 
-        @can('update', $user->profile)
-        <a href="{{ route('posts.create') }}" class="d-inline float-right mt-2">Add new post</a>
-        @endcan
       </div>
 
       @can('update', $user->profile)
-      <a href="{{ route('profile.edit', $user->id) }}" class="">Edit Profile</a>
+      <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-outline-warning mb-2">Edit Profile</a>
+      <a href="{{ route('posts.create') }}" class="btn btn-outline-warning mb-2">Add new post</a>
       @endcan
 
       <div>
@@ -52,7 +52,7 @@
     @foreach ($user->posts as $post)
     <div class="col-md-4 mb-3 pb-4">
       <a href="{{ route('posts.show', $post->id) }}">
-        <img src="/storage/{{ $post->image }}" alt="" class="img-fluid">
+        <img src="/storage/{{ $post->image }}" alt="" class="img-fluid shadow" data-toggle="tooltip" data-placement="top" title="{{ $post->caption }}">
       </a>
     </div>
     @endforeach
@@ -60,3 +60,11 @@
 
 </div>
 @endsection
+
+@push('js')
+<script charset="utf-8">
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+@endpush

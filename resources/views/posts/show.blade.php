@@ -21,7 +21,6 @@
           @endif
           <span>
             <a href="{{ route('profile.show', $post->user->id) }}" class="text-dark h6 pl-2 font-weight-bold mr-1">{{ $post->user->username }}</a>
-            <a href="#" class="font-weight-bold mt-3 border-left pl-2">Follow</a>
           </span>
         </div>
 

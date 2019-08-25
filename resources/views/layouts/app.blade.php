@@ -10,18 +10,18 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
 
   <!-- Fonts -->
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> --}}
+  {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
   <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
           <img src="{{ asset('img/logo.png') }}" alt="" class="w-75">
@@ -41,20 +41,25 @@
             <!-- Authentication Links -->
             @guest
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <a class="btn btn-outline-warning text-white mr-2" href="{{ route('login') }}">{{ __('Login') }}</a>
               </li>
-              @if (Route::has('register'))
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-              @endif
+              <li class="nav-item">
+                <a class="btn btn-outline-warning text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+              </li>
             @else
+              <li class="nav-item">
+                <a href="{{ route('posts.create') }}" class="btn btn-outline-warning text-white">New Post</a>
+              </li>
               <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                   {{ Auth::user()->username }} <span class="caret"></span>
                 </a>
 
+
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                  <a href="{{ route('profile.show', auth()->user()->profile->id) }}" class="dropdown-item">Profile</a>
+
                   <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
@@ -76,5 +81,9 @@
     @yield('content')
     </main>
   </div>
+
+
+<script src="{{ asset('js/app.js') }}"></script>
+@stack('js')
 </body>
 </html>
